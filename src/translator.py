@@ -9,16 +9,14 @@ def PixtoPixels(name, pixels):
 
     image = Image.new('RGB', (10, 10))
     
-    flat_pixels = [tuple(max(0, min(255, value)) for value in pixel) for pixel in pixels]
-    
-    image.putdata(flat_pixels)
+    image.putdata(pixels)
 
     image.save(f"{name}.png")
     
     image.show
 
 def allocator(chain):
-    return [chain[i:i+3] for i in range(0, len(chain), 3)]
+    return [tuple(chain[i:i+3]) for i in range(0, len(chain), 3)]
 
 def translator(chain):
     pix = []
@@ -52,4 +50,4 @@ def processMessage(msg):
 
 msg = "hey beethoven how are you? What do you think will this be a good idea or not? Ig this is working but am not sure how to check this shit and this is actually pretty cool idk, I want you to see it and then tell me. Guess i've gotta add more stuff! and still more to make it 10X10. Numbers actually "
 PixtoPixels("msg",processMessage(msg))
-print(len(msg))
+# print(len(msg))
